@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useIntersectionObserver } from '../../hooks';
 import { portfolioConfig } from '../../config/portfolio.config';
 import './Skills.css';
@@ -66,84 +66,104 @@ export default function Skills() {
                     ))}
                 </motion.div>
 
-                {/* Skills grid - always show cards for better visibility */}
-                <motion.div
-                    className="skills-grid"
-                    initial="hidden"
-                    animate={hasAnimated ? 'visible' : 'hidden'}
-                    variants={{
-                        visible: { transition: { staggerChildren: 0.03 } }
-                    }}
-                >
-                    {filteredSkills.map((skill, index) => (
+                {/* Skills grid - with AnimatePresence for proper transitions */}
+                <div className="skills-grid">
+                    <AnimatePresence mode="wait">
                         <motion.div
-                            key={skill.name}
-                            className="skill-card glass"
-                            onClick={() => setSelectedSkill(skill)}
+                            key={activeCategory}
+                            className="skills-grid-inner"
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
                             variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0 }
+                                visible: {
+                                    opacity: 1,
+                                    transition: { staggerChildren: 0.05 }
+                                },
+                                hidden: {
+                                    opacity: 0,
+                                    transition: { staggerChildren: 0.02, staggerDirection: -1 }
+                                }
                             }}
-                            whileHover={{ scale: 1.03, borderColor: skill.color }}
-                            whileTap={{ scale: 0.98 }}
-                            style={{ '--skill-color': skill.color }}
                         >
-                            <div className="skill-icon-wrapper">
-                                <div className="skill-orb" />
-                            </div>
-                            <span className="skill-name">{skill.name}</span>
-                            <div className="skill-level-bar">
+                            {filteredSkills.map((skill, index) => (
                                 <motion.div
-                                    className="skill-level-fill"
-                                    initial={{ width: 0 }}
-                                    animate={hasAnimated ? { width: `${skill.level}%` } : {}}
-                                    transition={{ delay: 0.3 + index * 0.02, duration: 0.5 }}
-                                />
-                            </div>
-                            <span className="skill-percent">{skill.level}%</span>
+                                    key={skill.name}
+                                    className="skill-card glass"
+                                    onClick={() => setSelectedSkill(skill)}
+                                    variants={{
+                                        hidden: { opacity: 0, scale: 0.8, y: 20 },
+                                        visible: {
+                                            opacity: 1,
+                                            scale: 1,
+                                            y: 0,
+                                            transition: { duration: 0.3 }
+                                        }
+                                    }}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    style={{ '--skill-color': skill.color }}
+                                >
+                                    <div className="skill-icon-wrapper">
+                                        <div className="skill-orb" />
+                                    </div>
+                                    <span className="skill-name">{skill.name}</span>
+                                    <div className="skill-level-bar">
+                                        <motion.div
+                                            className="skill-level-fill"
+                                            initial={{ width: 0 }}
+                                            animate={{ width: `${skill.level}%` }}
+                                            transition={{ delay: index * 0.02, duration: 0.5 }}
+                                        />
+                                    </div>
+                                    <span className="skill-percent">{skill.level}%</span>
+                                </motion.div>
+                            ))}
                         </motion.div>
-                    ))}
-                </motion.div>
+                    </AnimatePresence>
+                </div>
 
                 {/* Selected skill details */}
-                {selectedSkill && (
-                    <motion.div
-                        className="skill-detail glass"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                    >
-                        <button
-                            className="skill-detail-close"
-                            onClick={() => setSelectedSkill(null)}
+                <AnimatePresence>
+                    {selectedSkill && (
+                        <motion.div
+                            className="skill-detail glass"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 20 }}
                         >
-                            ×
-                        </button>
-                        <div className="skill-detail-header">
-                            <div
-                                className="skill-detail-orb"
-                                style={{ '--skill-color': selectedSkill.color }}
-                            />
-                            <div>
-                                <h3>{selectedSkill.name}</h3>
-                                <span className="skill-category">{selectedSkill.category}</span>
+                            <button
+                                className="skill-detail-close"
+                                onClick={() => setSelectedSkill(null)}
+                            >
+                                ×
+                            </button>
+                            <div className="skill-detail-header">
+                                <div
+                                    className="skill-detail-orb"
+                                    style={{ '--skill-color': selectedSkill.color }}
+                                />
+                                <div>
+                                    <h3>{selectedSkill.name}</h3>
+                                    <span className="skill-category">{selectedSkill.category}</span>
+                                </div>
                             </div>
-                        </div>
-                        <p className="skill-description">{selectedSkill.description}</p>
-                        <div className="skill-meta">
-                            <div className="skill-meta-item">
-                                <span className="meta-label">Proficiency</span>
-                                <span className="meta-value" style={{ color: selectedSkill.color }}>
-                                    {selectedSkill.level}%
-                                </span>
+                            <p className="skill-description">{selectedSkill.description}</p>
+                            <div className="skill-meta">
+                                <div className="skill-meta-item">
+                                    <span className="meta-label">Proficiency</span>
+                                    <span className="meta-value" style={{ color: selectedSkill.color }}>
+                                        {selectedSkill.level}%
+                                    </span>
+                                </div>
+                                <div className="skill-meta-item">
+                                    <span className="meta-label">Experience</span>
+                                    <span className="meta-value">{selectedSkill.yearsExp} years</span>
+                                </div>
                             </div>
-                            <div className="skill-meta-item">
-                                <span className="meta-label">Experience</span>
-                                <span className="meta-value">{selectedSkill.yearsExp} years</span>
-                            </div>
-                        </div>
-                    </motion.div>
-                )}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </motion.div>
         </section>
     );

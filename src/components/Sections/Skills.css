@@ -60,11 +60,15 @@
 
 /* Skills grid - for all devices now */
 .skills-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.skills-grid-inner {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 1rem;
-    max-width: 1000px;
-    margin: 0 auto;
+    width: 100%;
 }
 
 .skill-card {
