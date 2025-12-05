@@ -1,0 +1,325 @@
+/* Navigation Styles */
+
+/* Desktop Navigation - Side Dots */
+.nav-desktop {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.nav-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+}
+
+.nav-dot {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-dot-inner {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
+}
+
+.nav-dot:hover .nav-dot-inner,
+.nav-dot.active .nav-dot-inner {
+    width: 12px;
+    height: 12px;
+    background: var(--electric-cyan);
+    box-shadow:
+        0 0 10px var(--electric-cyan),
+        0 0 20px var(--electric-cyan),
+        0 0 30px rgba(0, 240, 255, 0.5);
+}
+
+.nav-dot.active .nav-dot-inner {
+    background: var(--hot-pink);
+    box-shadow:
+        0 0 10px var(--hot-pink),
+        0 0 20px var(--hot-pink),
+        0 0 30px rgba(255, 0, 128, 0.5);
+}
+
+.nav-dot-label {
+    position: absolute;
+    right: 100%;
+    margin-right: 1rem;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px var(--electric-cyan);
+}
+
+.nav-dot:hover .nav-dot-label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.nav-dot-line {
+    display: none;
+}
+
+.nav-progress-line {
+    position: absolute;
+    right: 7px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1px;
+    z-index: -1;
+}
+
+/* Logo */
+.nav-logo {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    text-shadow: 0 0 20px var(--electric-cyan);
+    letter-spacing: 0.1em;
+}
+
+.logo-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--hot-pink);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px var(--hot-pink);
+}
+
+.nav-logo.scrolled {
+    transform: scale(0.9);
+}
+
+/* Mobile Navigation */
+.nav-mobile {
+    display: none;
+}
+
+/* Mobile orb */
+.nav-orb {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orb-core {
+    width: 12px;
+    height: 12px;
+    background: var(--electric-cyan);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px var(--electric-cyan);
+}
+
+.nav-orb.open .orb-core {
+    background: var(--hot-pink);
+    box-shadow: 0 0 15px var(--hot-pink);
+}
+
+.orb-ring {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--electric-cyan);
+    border-radius: 50%;
+    animation: orbPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.orb-ring.ring-2 {
+    width: 40px;
+    height: 40px;
+    animation-delay: 0.5s;
+    opacity: 0.5;
+}
+
+.nav-orb.open .orb-ring {
+    border-color: var(--hot-pink);
+    box-shadow: 0 0 10px rgba(255, 0, 128, 0.3);
+}
+
+@keyframes orbPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* Mobile menu overlay */
+.nav-mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-mobile-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    justify-content: center;
+}
+
+.nav-mobile-item:hover,
+.nav-mobile-item.active {
+    border-color: var(--electric-cyan);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.nav-mobile-item.active {
+    border-color: var(--hot-pink);
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+}
+
+.nav-mobile-icon {
+    font-size: 1.2rem;
+}
+
+.nav-mobile-label {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+}
+
+/* Bottom navigation bar */
+.nav-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: var(--glass-bg-heavy);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--glass-border);
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 1rem;
+    z-index: 999;
+}
+
+.nav-bottom-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-bottom-icon {
+    font-size: 1.5rem;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.nav-bottom-item.active .nav-bottom-icon,
+.nav-bottom-item:hover .nav-bottom-icon {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px var(--electric-cyan));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-desktop {
+        display: none;
+    }
+
+    .nav-mobile {
+        display: block;
+    }
+
+    .nav-bottom-bar {
+        display: flex;
+    }
+
+    .nav-logo {
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+}

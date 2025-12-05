@@ -1,0 +1,248 @@
+/* Loading Screen Styles */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--void);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Background grid */
+.loading-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    perspective: 500px;
+    transform: rotateX(60deg);
+    transform-origin: center 150%;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+/* Portal animation */
+.loading-portal {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 2rem;
+}
+
+.portal-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 2px solid;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ring-1 {
+    width: 100%;
+    height: 100%;
+    border-color: var(--electric-cyan);
+    animation: portalSpin 3s linear infinite;
+    box-shadow:
+        0 0 20px var(--electric-cyan),
+        inset 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.ring-2 {
+    width: 75%;
+    height: 75%;
+    border-color: var(--hot-pink);
+    animation: portalSpin 2s linear infinite reverse;
+    box-shadow:
+        0 0 15px var(--hot-pink),
+        inset 0 0 15px rgba(255, 0, 128, 0.3);
+}
+
+.ring-3 {
+    width: 50%;
+    height: 50%;
+    border-color: var(--laser-purple);
+    animation: portalSpin 1.5s linear infinite;
+    box-shadow:
+        0 0 10px var(--laser-purple),
+        inset 0 0 10px rgba(176, 38, 255, 0.3);
+}
+
+.portal-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    background: radial-gradient(circle, var(--hot-pink), var(--laser-purple), transparent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: corePulse 1s ease-in-out infinite;
+}
+
+@keyframes portalSpin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes corePulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Loading content */
+.loading-content {
+    text-align: center;
+    z-index: 1;
+}
+
+.loading-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    color: var(--text-primary);
+    text-shadow:
+        0 0 10px var(--electric-cyan),
+        0 0 20px var(--electric-cyan),
+        0 0 40px var(--electric-cyan);
+    margin-bottom: 2rem;
+    animation: flicker 3s ease-in-out infinite;
+}
+
+/* Progress bar */
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--electric-cyan), var(--hot-pink));
+    border-radius: 2px;
+    transition: width 0.2s ease;
+}
+
+.progress-glow {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    height: 8px;
+    background: linear-gradient(90deg, var(--electric-cyan), var(--hot-pink));
+    filter: blur(4px);
+    opacity: 0.8;
+}
+
+.progress-text {
+    font-family: var(--font-code);
+    font-size: 1rem;
+    color: var(--electric-cyan);
+    min-width: 50px;
+    text-shadow: 0 0 10px var(--electric-cyan);
+}
+
+/* Loading tip */
+.loading-tip {
+    font-family: var(--font-code);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+/* Scanline effect */
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(0, 240, 255, 0.3),
+            transparent);
+    animation: scanline 3s linear infinite;
+    pointer-events: none;
+}
+
+/* Floating particles */
+.loading-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.loading-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--electric-cyan);
+    border-radius: 50%;
+    bottom: -10px;
+    animation: particleFloat 3s ease-in-out infinite;
+    box-shadow: 0 0 10px var(--electric-cyan);
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+    }
+}
