@@ -177,7 +177,7 @@ export default function Contact() {
                                     type="text"
                                     id="name"
                                     className="input-field"
-                                    placeholder="John Doe"
+                                    placeholder="Sanket Kurve"
                                     value={formData.name}
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                     required
@@ -190,7 +190,7 @@ export default function Contact() {
                                     type="email"
                                     id="email"
                                     className="input-field"
-                                    placeholder="john@example.com"
+                                    placeholder="sanketkurve.2005@gmail.com"
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                     required
