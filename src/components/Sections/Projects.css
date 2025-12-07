@@ -443,39 +443,6 @@
         margin: 0 auto;
     }
 
-    /* Disable rotation animations on mobile to prevent overlapping */
-    .portal-ring-outer {
-        animation: none !important;
-    }
-
-    .portal-ring-inner {
-        animation: none !important;
-    }
-
-    /* Ensure content stays upright on mobile */
-    .portal-content {
-        transform: rotate(0deg) !important;
-    }
-
-    /* Adjust font sizes for mobile */
-    .project-name {
-        font-size: 1.2rem;
-    }
-
-    .project-tagline {
-        font-size: 0.8rem;
-    }
-
-    .project-category {
-        font-size: 0.65rem;
-    }
-
-    .tech-tag {
-        font-size: 0.6rem;
-        padding: 0.15rem 0.4rem;
-    }
-
-    /* Modal adjustments */
     .project-modal-overlay {
         padding: 1rem;
     }
@@ -486,9 +453,5 @@
 
     .modal-title {
         font-size: 1.8rem;
-    }
-
-    .impact-metric {
-        font-size: 2rem;
     }
 }
