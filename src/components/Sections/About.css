@@ -200,9 +200,9 @@
     background: rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     border: 1px solid var(--glass-border);
-    flex: 1;
-    min-width: 80px;
-    max-width: 120px;
+    flex: 1 1 80px;
+    min-width: 70px;
+    max-width: 130px;
 }
 
 .stat-value {
@@ -216,12 +216,13 @@
 }
 
 .stat-label {
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-secondary);
     word-break: break-word;
     line-height: 1.3;
+    hyphens: auto;
 }
 
 /* Superpower panel */
@@ -358,19 +359,42 @@
         gap: 1.5rem;
     }
 
+    .about-panel {
+        padding: 1.75rem;
+    }
+
     .achievements-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
+    .about {
+        padding-bottom: 100px;
+    }
+
+    .about-panel {
+        padding: 1.5rem;
+    }
+
     .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
+        flex-wrap: wrap;
         gap: 0.75rem;
+        justify-content: center;
+    }
+
+    .stat-item {
+        flex: 1 1 calc(33.333% - 0.75rem);
+        min-width: 85px;
+        padding: 0.875rem;
     }
 
     .stat-value {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
+    }
+
+    .stat-label {
+        font-size: 0.6rem;
     }
 
     .achievements-grid {
@@ -378,7 +402,19 @@
         gap: 1rem;
     }
 
+    .achievement-badge {
+        padding: 1.25rem 0.875rem;
+    }
+
     .badge-icon {
         font-size: 2rem;
+    }
+
+    .badge-title {
+        font-size: 0.75rem;
+    }
+
+    .badge-desc {
+        font-size: 0.7rem;
     }
 }

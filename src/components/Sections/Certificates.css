@@ -220,16 +220,43 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    .certificates {
+        padding-bottom: 100px;
+    }
+
     .certificates-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        padding: 0 0.5rem;
     }
 
     .certificate-card {
-        padding: 1.5rem;
+        padding: 1.75rem 1.25rem;
     }
 
     .cert-icon {
-        font-size: 2.5rem;
+        font-size: 2.75rem;
+    }
+
+    .cert-banner {
+        font-size: 0.7rem;
+        padding: 0.45rem 0.875rem;
+    }
+
+    .cert-name {
+        font-size: 1.05rem;
+    }
+
+    .cert-issuer {
+        font-size: 0.85rem;
+    }
+
+    .cert-date {
+        font-size: 0.75rem;
+    }
+
+    .cert-verify {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.75rem;
     }
 }

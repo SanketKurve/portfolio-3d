@@ -139,8 +139,8 @@
     position: fixed;
     top: 1.5rem;
     right: 1.5rem;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -148,11 +148,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .orb-core {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     background: var(--electric-cyan);
     border-radius: 50%;
     transition: all 0.3s ease;
@@ -161,13 +162,13 @@
 
 .nav-orb.open .orb-core {
     background: var(--hot-pink);
-    box-shadow: 0 0 15px var(--hot-pink);
+    box-shadow: 0 0 20px var(--hot-pink);
 }
 
 .orb-ring {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border: 2px solid var(--electric-cyan);
     border-radius: 50%;
     animation: orbPulse 2s ease-in-out infinite;
@@ -175,8 +176,8 @@
 }
 
 .orb-ring.ring-2 {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     animation-delay: 0.5s;
     opacity: 0.5;
 }
@@ -270,8 +271,10 @@
     display: none;
     justify-content: space-around;
     align-items: center;
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
+    padding-bottom: env(safe-area-inset-bottom, 0.5rem);
     z-index: 999;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
 }
 
 .nav-bottom-item {
@@ -320,6 +323,16 @@
     }
 
     .logo-text {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+    }
+
+    .nav-bottom-item {
+        min-width: 60px;
+        min-height: 60px;
+    }
+
+    .nav-mobile-item {
+        padding: 1.25rem 2.5rem;
+        min-width: 220px;
     }
 }
