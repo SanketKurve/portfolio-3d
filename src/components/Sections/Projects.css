@@ -156,52 +156,92 @@
     animation: particleOrbit 2s linear infinite;
 }
 
+/* 12 particles positioned like a wall clock, exactly between outer and inner rings */
+/* Gap is from 0% (outer edge) to 7.5% (inner ring edge). Center of gap = 3.75% from edge */
+/* Using radius 46.25% from center (50% - 3.75% = 46.25%) */
+
 .particle:nth-child(1) {
-    top: 10%;
+    /* 12 o'clock */
+    top: 3.75%;
     left: 50%;
     animation-delay: 0s;
 }
 
 .particle:nth-child(2) {
-    top: 25%;
-    left: 85%;
-    animation-delay: 0.25s;
+    /* 1 o'clock */
+    top: 10%;
+    left: 73%;
+    animation-delay: 0.17s;
 }
 
 .particle:nth-child(3) {
-    top: 50%;
-    left: 95%;
-    animation-delay: 0.5s;
+    /* 2 o'clock */
+    top: 27%;
+    left: 90%;
+    animation-delay: 0.33s;
 }
 
 .particle:nth-child(4) {
-    top: 75%;
-    left: 85%;
-    animation-delay: 0.75s;
+    /* 3 o'clock */
+    top: 50%;
+    left: 96.25%;
+    animation-delay: 0.5s;
 }
 
 .particle:nth-child(5) {
+    /* 4 o'clock */
+    top: 73%;
+    left: 90%;
+    animation-delay: 0.67s;
+}
+
+.particle:nth-child(6) {
+    /* 5 o'clock */
     top: 90%;
+    left: 73%;
+    animation-delay: 0.83s;
+}
+
+.particle:nth-child(7) {
+    /* 6 o'clock */
+    top: 96.25%;
     left: 50%;
     animation-delay: 1s;
 }
 
-.particle:nth-child(6) {
-    top: 75%;
-    left: 15%;
-    animation-delay: 1.25s;
+.particle:nth-child(8) {
+    /* 7 o'clock */
+    top: 90%;
+    left: 27%;
+    animation-delay: 1.17s;
 }
 
-.particle:nth-child(7) {
+.particle:nth-child(9) {
+    /* 8 o'clock */
+    top: 73%;
+    left: 10%;
+    animation-delay: 1.33s;
+}
+
+.particle:nth-child(10) {
+    /* 9 o'clock */
     top: 50%;
-    left: 5%;
+    left: 3.75%;
     animation-delay: 1.5s;
 }
 
-.particle:nth-child(8) {
-    top: 25%;
-    left: 15%;
-    animation-delay: 1.75s;
+.particle:nth-child(11) {
+    /* 10 o'clock */
+    top: 27%;
+    left: 10%;
+    animation-delay: 1.67s;
+}
+
+.particle:nth-child(12) {
+    /* 11 o'clock */
+    top: 10%;
+    left: 27%;
+    animation-delay: 1.83s;
 }
 
 @keyframes particleOrbit {
@@ -430,19 +470,114 @@
     margin-top: 2rem;
 }
 
-/* Responsive */
+/* ============================================
+   MOBILE RESPONSIVE - CARD DESIGN
+   ============================================ */
 @media (max-width: 768px) {
     .projects-grid {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 1.5rem;
         padding: 0 1rem;
     }
 
+    /* Transform portal into card */
     .project-portal {
-        max-width: 350px;
-        margin: 0 auto;
+        aspect-ratio: auto;
+        max-width: 100%;
+        margin: 0;
     }
 
+    /* Convert outer ring to card container */
+    .portal-ring-outer {
+        position: relative;
+        inset: auto;
+        border: 1px solid var(--portal-color);
+        border-radius: 16px;
+        animation: none !important;
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        box-shadow:
+            0 0 20px color-mix(in srgb, var(--portal-color) 20%, transparent),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .project-portal:hover .portal-ring-outer {
+        border-color: var(--portal-color);
+        box-shadow:
+            0 0 30px color-mix(in srgb, var(--portal-color) 40%, transparent),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+
+    /* Convert inner ring to transparent wrapper */
+    .portal-ring-inner {
+        width: 100%;
+        height: auto;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        animation: none !important;
+        opacity: 1;
+    }
+
+    /* Card content layout */
+    .portal-content {
+        padding: 1.5rem;
+        text-align: left;
+        animation: none !important;
+        transform: none !important;
+    }
+
+    .project-category {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.6rem;
+        margin-bottom: 0.75rem;
+        display: inline-block;
+    }
+
+    .project-name {
+        font-size: 1.3rem;
+        text-align: left;
+        margin-bottom: 0.5rem;
+    }
+
+    .project-tagline {
+        font-size: 0.85rem;
+        text-align: left;
+        margin-bottom: 1rem;
+        opacity: 0.8;
+    }
+
+    .project-tech-preview {
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
+
+    .tech-tag {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.6rem;
+        background: rgba(0, 0, 0, 0.4);
+        border-color: var(--glass-border);
+    }
+
+    .tech-tag.more {
+        border-color: var(--electric-cyan);
+    }
+
+    /* Hide portal-only elements */
+    .portal-particles,
+    .portal-enter {
+        display: none !important;
+    }
+
+    /* Placeholder card styling */
+    .project-portal.placeholder .portal-ring-outer {
+        border-style: dashed;
+        opacity: 0.5;
+    }
+
+    /* Modal adjustments */
     .project-modal-overlay {
         padding: 1rem;
     }
@@ -453,5 +588,30 @@
 
     .modal-title {
         font-size: 1.8rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .projects-grid {
+        padding: 0 0.75rem;
+        gap: 1.25rem;
+    }
+
+    .portal-content {
+        padding: 1.25rem;
+    }
+
+    .project-name {
+        font-size: 1.1rem;
+    }
+
+    .project-tagline {
+        font-size: 0.8rem;
+    }
+
+    .tech-tag {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.5rem;
     }
 }
