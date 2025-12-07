@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 
 // Styles
 import './styles/globals.css';
@@ -72,6 +73,9 @@ function App() {
         <Projects />
         <Contact />
       </main>
+
+      {/* Vercel Analytics */}
+      <Analytics />
     </div>
   );
 }
