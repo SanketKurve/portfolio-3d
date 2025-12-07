@@ -156,9 +156,8 @@
     animation: particleOrbit 2s linear infinite;
 }
 
-/* 12 particles positioned like a wall clock, exactly between outer and inner rings */
+/* 8 particles positioned at 45° intervals, exactly between outer and inner rings */
 /* Gap is from 0% (outer edge) to 7.5% (inner ring edge). Center of gap = 3.75% from edge */
-/* Using radius 46.25% from center (50% - 3.75% = 46.25%) */
 
 .particle:nth-child(1) {
     /* 12 o'clock */
@@ -168,80 +167,52 @@
 }
 
 .particle:nth-child(2) {
-    /* 1 o'clock */
-    top: 10%;
-    left: 73%;
-    animation-delay: 0.17s;
+    /* 1:30 position (45°) */
+    top: 17%;
+    left: 83%;
+    animation-delay: 0.25s;
 }
 
 .particle:nth-child(3) {
-    /* 2 o'clock */
-    top: 27%;
-    left: 90%;
-    animation-delay: 0.33s;
-}
-
-.particle:nth-child(4) {
     /* 3 o'clock */
     top: 50%;
     left: 96.25%;
     animation-delay: 0.5s;
 }
 
+.particle:nth-child(4) {
+    /* 4:30 position (135°) */
+    top: 83%;
+    left: 83%;
+    animation-delay: 0.75s;
+}
+
 .particle:nth-child(5) {
-    /* 4 o'clock */
-    top: 73%;
-    left: 90%;
-    animation-delay: 0.67s;
-}
-
-.particle:nth-child(6) {
-    /* 5 o'clock */
-    top: 90%;
-    left: 73%;
-    animation-delay: 0.83s;
-}
-
-.particle:nth-child(7) {
     /* 6 o'clock */
     top: 96.25%;
     left: 50%;
     animation-delay: 1s;
 }
 
-.particle:nth-child(8) {
-    /* 7 o'clock */
-    top: 90%;
-    left: 27%;
-    animation-delay: 1.17s;
+.particle:nth-child(6) {
+    /* 7:30 position (225°) */
+    top: 83%;
+    left: 17%;
+    animation-delay: 1.25s;
 }
 
-.particle:nth-child(9) {
-    /* 8 o'clock */
-    top: 73%;
-    left: 10%;
-    animation-delay: 1.33s;
-}
-
-.particle:nth-child(10) {
+.particle:nth-child(7) {
     /* 9 o'clock */
     top: 50%;
     left: 3.75%;
     animation-delay: 1.5s;
 }
 
-.particle:nth-child(11) {
-    /* 10 o'clock */
-    top: 27%;
-    left: 10%;
-    animation-delay: 1.67s;
-}
-
-.particle:nth-child(12) {
-    /* 11 o'clock */
-    top: 10%;
-    left: 27%;
-    animation-delay: 1.83s;
+.particle:nth-child(8) {
+    /* 10:30 position (315°) */
+    top: 17%;
+    left: 17%;
+    animation-delay: 1.75s;
 }
 
 @keyframes particleOrbit {

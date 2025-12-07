@@ -74,7 +74,7 @@ export default function Projects() {
 
                             {/* Energy particles */}
                             <div className="portal-particles">
-                                {[...Array(12)].map((_, i) => (
+                                {[...Array(8)].map((_, i) => (
                                     <span key={i} className="particle" />
                                 ))}
                             </div>
